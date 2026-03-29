@@ -5,7 +5,7 @@ GET {{CarRental_HostAddress}}/api/carrental
 Accept: application/json
 
 ###
-GET {{CarRental_HostAddress}}/api/carrental/3
+GET {{CarRental_HostAddress}}/api/carrental/4
 Accept: application/json
 
 ###
@@ -13,10 +13,9 @@ POST {{CarRental_HostAddress}}/api/carrental
 Content-Type: application/json
 
 {
-    "id": 3,
     "name": "Sedan",
     "cost": 1950,
-    "available": 1
+    "available": true
 }
 
 ###
@@ -27,7 +26,7 @@ Content-Type: application/json
     "id": 4,
     "name": "GenericCar",
     "cost": 1950,
-    "available": 1
+    "available": false
 }
 
 ###

@@ -17,16 +17,16 @@ public class CarRentalController : ControllerBase
 
 
     [HttpGet]
-    public ActionResult<List<Car>> GetAll()
+    public async Task<ActionResult<List<Car>>> GetAll()
     {
-        return Ok(_carService.GetAll());
+        return Ok(await _carService.GetAllAsync());
     }
 
 
     [HttpGet("{id}")]
-    public ActionResult<Car?> Get(int id)
+    public async Task<ActionResult<Car?>> Get(int id)
     {
-        if (_carService.Get(id) is not Car car)
+        if (await _carService.GetAsync(id) is not Car car)
         {
             return NotFound();
         }
@@ -36,46 +36,45 @@ public class CarRentalController : ControllerBase
 
 
     [HttpPost]
-    public ActionResult Add(Car car)
+    public async Task<ActionResult> Add(Car car)
     {
         if (car == null)
         {
             return BadRequest();
         }
 
-        car.Id = _carService.GetNextId();
-        _carService.Add(car);
+        await _carService.AddAsync(car);
         return CreatedAtAction(nameof(Get), new {id = car.Id}, car);
     }
 
 
     [HttpPut("{id}")]
-    public IActionResult Change(int id, Car car)
+    public async Task<IActionResult> Change(int id, Car car)
     {
         if (id != car.Id)
         {
             return BadRequest();
         }
 
-        else if (_carService.Get(id) == null)
+        else if (await _carService.GetAsync(id) == null)
         {
             return NotFound();
         }
 
-        _carService.Update(car);
+        await _carService.UpdateAsync(id, car);
         return NoContent();
     }
 
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        if (_carService.Get(id) == null)
+        if (await _carService.GetAsync(id) == null)
         {
             return NotFound();
         }
 
-        _carService.Delete(id);
+        await _carService.DeleteAsync(id);
         return NoContent();
     }
 }
