@@ -17,7 +17,8 @@ ASP.NET Core Web API that allows renting cars. Has options of
 3. dotnet restore
 4. dotnet ef database update
 5. dotnet run
-/
+
+###
 Testing possible using
 - .http file or
 - swagger UI at http://localhost:5199/swagger
