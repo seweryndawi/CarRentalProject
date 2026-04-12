@@ -52,4 +52,17 @@ public class CarService
             await _context.SaveChangesAsync();
         }
     }
+
+
+    public async Task<bool> Rent(int id)
+    {
+        Car carToRent = (await _context.Cars.FindAsync(id))!;
+        
+        if(carToRent.Available == false)
+            return false;
+
+        carToRent.Available = false;
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }
