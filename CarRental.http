@@ -1,15 +1,7 @@
 @CarRental_HostAddress = http://localhost:5199
 
 ###
-GET {{CarRental_HostAddress}}/api/carrental
-Accept: application/json
-
-###
-GET {{CarRental_HostAddress}}/api/carrental/4
-Accept: application/json
-
-###
-POST {{CarRental_HostAddress}}/api/carrental
+POST {{CarRental_HostAddress}}/api/car
 Content-Type: application/json
 
 {
@@ -19,15 +11,45 @@ Content-Type: application/json
 }
 
 ###
-PUT {{CarRental_HostAddress}}/api/carrental/4
+POST {{CarRental_HostAddress}}/api/car
 Content-Type: application/json
 
 {
-    "id": 4,
+    "name": "Mercedes",
+    "cost": 3000,
+    "available": false
+}
+
+###
+POST {{CarRental_HostAddress}}/api/car
+Content-Type: application/json
+
+{
+    "name": "Honda",
+    "cost": 3500,
+    "available": true
+}
+
+###
+GET {{CarRental_HostAddress}}/api/car
+Accept: application/json
+
+###
+GET {{CarRental_HostAddress}}/api/car/1
+Accept: application/json
+
+###
+PUT {{CarRental_HostAddress}}/api/car/2
+Content-Type: application/json
+
+{
     "name": "GenericCar",
     "cost": 1950,
     "available": false
 }
 
 ###
-DELETE {{CarRental_HostAddress}}/api/carrental/2
+DELETE {{CarRental_HostAddress}}/api/car/2
+
+###
+PUT {{CarRental_HostAddress}}/api/rental/1
