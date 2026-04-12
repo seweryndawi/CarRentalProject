@@ -14,7 +14,9 @@ ASP.NET Core Web API that allows renting cars. Has options of
 ## Setup
 1. git clone https://github.com/seweryndawi/CarRentalProject.git
 2. cd CarRentalProject
-3. dotnet run
+3. dotnet restore
+4. dotnet ef database update
+5. dotnet run
 /
 Testing possible using
 - .http file or
