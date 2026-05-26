@@ -65,4 +65,17 @@ public class CarService
         await _context.SaveChangesAsync();
         return true;
     }
+
+
+    public async Task<bool> ReturnCar(int id)
+    {
+        Car carToReturn = (await _context.Cars.FindAsync(id))!;
+
+        if(carToReturn.Available == true)
+            return false;
+        
+        carToReturn.Available = true;
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }

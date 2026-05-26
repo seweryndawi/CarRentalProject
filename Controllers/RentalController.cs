@@ -16,7 +16,7 @@ public class RentalController: ControllerBase
     }
 
 
-    [HttpPut("{id}")]
+    [HttpPut("rent/{id}")]
     public async Task<IActionResult> RentCar(int id)
     {
         if(await _carService.GetAsync(id) is not Car)
@@ -25,6 +25,23 @@ public class RentalController: ControllerBase
         }
 
         if(!await _carService.Rent(id))
+        {
+            return BadRequest();
+        }
+        
+        return NoContent();
+    }
+
+
+    [HttpPut("return/{id}")]
+    public async Task<IActionResult> ReturnCar(int id)
+    {
+        if(await _carService.GetAsync(id) is not Car)
+        {
+            return NotFound();
+        }
+
+        if(!await _carService.ReturnCar(id))
         {
             return BadRequest();
         }
